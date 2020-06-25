@@ -81,7 +81,7 @@ var newBarcode = function() {
     $("#barcode").JsBarcode(
         $("#userInput").val(),
         {
-          "format": $("#barcodeType").val(),
+          "format": $("#barcodeType").val() || "CODE128",
           "background": $("#background-color").val(),
           "lineColor": $("#line-color").val(),
           "fontSize": parseInt($("#bar-fontSize").val()),
@@ -112,3 +112,9 @@ var newBarcode = function() {
     $("#bar-margin-display").text($("#bar-margin").val());
     $("#bar-text-margin-display").text($("#bar-text-margin").val());
 };
+
+
+// function replacePage(){
+//   var newElement= "<input type='textbox' name='myTextbox'>ddd";
+//   document.body.innerHTML=newElement;
+//   }
