@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+	<head> 
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<script type="text/javascript" src="JsBarcode.all.min.js"></script>
+		
+		<style>
+			
+		</style>
+	</head>
+	<body>
+	<!-- <body onload="printpage()"> -->
+	
+		<svg id="code39"></svg>
+		<svg id="code39"></svg>
+		<svg id="code39"></svg>
+		<svg id="code39"></svg>
+		<svg id="code39"></svg>
+		<svg id="code39"></svg>
+		<br>
+		
+		<button onclick="window.print();">Print </button>
+		
+<script>		
+var i;
+
+	JsBarcode("#code39", "999999M", {format: "code39"});
+
+function printpage() {
+  window.print();
+  }
+</script>
+	</body>
+
+
+</html>

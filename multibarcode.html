@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="JsBarcode.all.min.js"></script>
+
+    <title>barcode-js</title>
+</head>
+<body>
+    
+
+<svg id="barcode1"></svg>
+<svg id="barcode2"></svg>
+<svg id="barcode3"></svg>
+
+<br>
+this is after
+<br>
+<svg class="barcode"
+  jsbarcode-format="upc"
+  jsbarcode-value="123456789012"
+  jsbarcode-textmargin="0"
+  jsbarcode-fontoptions="bold">
+</svg>
+
+
+</body>
+<script>JsBarcode("#barcode1", "Hi!", {
+    fontSize: 40,
+    background: "#4b8b7f",
+    lineColor: "#ffffff",
+    margin: 40,
+    marginLeft: 80
+  });
+  
+  JsBarcode("#barcode2", "Hi!", {
+    textAlign: "left",
+    textPosition: "top",
+    font: "cursive",
+    fontOptions: "bold",
+    fontSize: 40,
+    textMargin: 15,
+    text: "Special"
+  });
+  
+  JsBarcode("#barcode3", "1234", {
+    format: "pharmacode",
+    displayValue: false,
+    height: 50,
+    width: 6
+  });
+  
+  JsBarcode(".barcode").init();
+  </script>
+</html>
