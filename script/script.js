@@ -189,8 +189,10 @@ function replacePage(){
       console.log(thecode, "code list");
       var $bars = $('<div class="thebars"><svg class="barcodes"></svg></div>').appendTo(this);
       $bars.find('.barcodes').JsBarcode(thecode, {
-        displayValue: false,
-        height: 35
+        width:2,
+        height:40,
+        fontSize:10,
+        displayValue: true
       });
     });
 
