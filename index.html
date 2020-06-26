@@ -43,7 +43,7 @@
             <div class="input-group margin-bottom-sm">
               <span class="input-group-addon"><i class="fa fa-barcode fa-fw"></i></span>
               <input class="form-control" id="userInputFirst" type="text" placeholder="123" maxlength="3" minlength="3" autofocus>
-              <input class="form-control" id="userInput" type="text" value="123456" placeholder="123456" maxlength="6" minlength="6" autofocus>
+              <input class="form-control" id="userInput" type="text"  placeholder="123456" maxlength="6" minlength="6" autofocus>
               <span class="input-group-btn">
                 <select class="btn barcode-select" id="barcodeType" title="CODE128">
                   <option value="CODE128">CODE128 auto</option>
@@ -69,7 +69,10 @@
         </div>
            <br>
         <div>
-          
+          <input class="form-control" id="count" type="number"  placeholder="10" maxlength="6" autofocus>
+        </div>
+
+        <div>
           <button class="button" name="myButton" onclick="replacePage()">Print</button>
         </div>
 
@@ -169,7 +172,7 @@
       </div>
     </div>
 
-    <div>
+    <!-- <div>
     <table>
       <tr>
         <th>barcode list</th>        
@@ -184,7 +187,7 @@
       </tr>
     </table>
     <button id="barcodes">shwo barcodes</button>
-    </div>
+    </div> -->
 
     <script>	 
       $("#barcodes").click(function() {
@@ -197,6 +200,7 @@
             height: 20
           });
         });
+        readFiles();
       });
       
 

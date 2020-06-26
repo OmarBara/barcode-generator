@@ -16,7 +16,7 @@ var defaultValues = {
     MSI1110 : "123456",
     pharmacode : "1234"
 };
-
+var count;
 var barCode;
 var storeOption = {
   "format" : "",
@@ -34,12 +34,18 @@ var storeOption = {
 };
 
 $(document).ready(function(){
+    //read the userInputFirst and add to user input
+
+    
     $("#userInput").on('input',newBarcode);
     $("#barcodeType").change(function(){
         $("#userInput").val( defaultValues[$(this).val()] );
 
         newBarcode();
     });
+
+    //counter
+    
 
     $(".text-align").click(function(){
       $(".text-align").removeClass("btn-primary");
@@ -94,8 +100,7 @@ $(document).ready(function(){
 
     $('#userInput').on("input",function(){
       barCode = $(this).val(); 
-      // $("#userInputFirst").val(value);
-      
+      // $("#userInputFirst").val(value);      
       
       storeOption = {
         "format" : $("#barcodeType").val(),
@@ -163,9 +168,40 @@ var newBarcode = function() {
 
 
 function replacePage(){
-  var newElement= "<svg id='barcode'></svg>";
+  count = $("#count").val();
+  console.log(count, "count");
+
+  var newElement = "<div id='here_table'></div>";  //"<svg id='barcode'></svg>";
   document.body.innerHTML = newElement;
   newBarcode();
+
+  var content = "<table>"
+    for(i = 0; i < count; i++){
+        content += '<tr><td class="code">' + barCode++ + '</td></tr>';
+    }
+    content += "</table>"
+
+    $('#here_table').append(content);
+
+    //code generate in table
+    $(".code").each(function() {
+      var thecode = $(this).text();
+      console.log(thecode, "code list");
+      var $bars = $('<div class="thebars"><br /><svg class="barcodes"></div></svg>').appendTo(this);
+      $bars.find('.barcodes').JsBarcode(thecode, {
+        displayValue: false,
+        height: 20
+      });
+    });
+
+}
+
+//function to store to file
+function readFiles()
+{
+    $.get('file.txt', function(data) {
+        alert(data);
+    }, "text");
 }
 
 // function replacePage(){
