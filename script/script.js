@@ -177,7 +177,7 @@ function replacePage(){
 
   var content = "<table>"
     for(i = 0; i < count; i++){
-        content += '<tr><td class="code">' + barCode++ + '</td></tr>';
+        content += '<tr><td class="code">' + "" + barCode++ + '</td></tr>';
     }
     content += "</table>"
 
@@ -187,10 +187,10 @@ function replacePage(){
     $(".code").each(function() {
       var thecode = $(this).text();
       console.log(thecode, "code list");
-      var $bars = $('<div class="thebars"><br /><svg class="barcodes"></div></svg>').appendTo(this);
+      var $bars = $('<div class="thebars"><svg class="barcodes"></svg></div>').appendTo(this);
       $bars.find('.barcodes').JsBarcode(thecode, {
         displayValue: false,
-        height: 20
+        height: 35
       });
     });
 
