@@ -17,6 +17,22 @@ var defaultValues = {
     pharmacode : "1234"
 };
 
+var barCode;
+var storeOption = {
+  "format" : "",
+  "background": "",
+  "lineColor": "",
+  "fontSize": 0,
+  "height": 0,
+  "width":"",
+  "margin": 0,
+  "textMargin": 0,
+  "displayValue": true,
+  "font": "",
+  "fontOptions": "",
+  "textAlign": ""
+};
+
 $(document).ready(function(){
     $("#userInput").on('input',newBarcode);
     $("#barcodeType").change(function(){
@@ -74,34 +90,41 @@ $(document).ready(function(){
     $('.color').colorPicker({renderCallback: newBarcode});
 
     newBarcode();
+
+
+    $('#userInput').on("input",function(){
+      barCode = $(this).val(); 
+      // $("#userInputFirst").val(value);
+      
+      
+      storeOption = {
+        "format" : $("#barcodeType").val(),
+        "background": $("#background-color").val(),
+        "lineColor": $("#line-color").val(),
+        "fontSize": parseInt($("#bar-fontSize").val()),
+        "height": parseInt($("#bar-height").val()),
+        "width": $("#bar-width").val(),
+        "margin": parseInt($("#bar-margin").val()),
+        "textMargin": parseInt($("#bar-text-margin").val()),
+        "displayValue": $(".display-text.btn-primary").val() == "true",
+        "font": $("#font").val(),
+        "fontOptions": $(".font-option.btn-primary").map(function(){return this.value;}).get().join(" "),
+        "textAlign": $(".text-align.btn-primary").val()
+      };
+
+
+    });
+    
 });
 
 
-$('#userInput').keyup(function(){
-  var value = $("#userInput").val(); 
-  $("#userInputFirst").val(value);
-});
 
 
-var userInput =  parseInt($("#userInput").val());
 // $("#userInputFirst").val(userInput);
 
-var storeOption = {
-  "format" : $("#barcodeType").val(),
-  "background": $("#background-color").val(),
-  "lineColor": $("#line-color").val(),
-  "fontSize": parseInt($("#bar-fontSize").val()),
-  "height": parseInt($("#bar-height").val()),
-  "width": $("#bar-width").val(),
-  "margin": parseInt($("#bar-margin").val()),
-  "textMargin": parseInt($("#bar-text-margin").val()),
-  "displayValue": $(".display-text.btn-primary").val() == "true",
-  "font": $("#font").val(),
-  "fontOptions": $(".font-option.btn-primary").map(function(){return this.value;}).get().join(" "),
-  "textAlign": $(".text-align.btn-primary").val()
-};
+
 var newBarcode = function() {
-  console.log(userInput);
+  console.log(barCode);
     //Convert to boolean
     $("#barcode").JsBarcode(
         $("#userInput").val(),

@@ -43,7 +43,7 @@
             <div class="input-group margin-bottom-sm">
               <span class="input-group-addon"><i class="fa fa-barcode fa-fw"></i></span>
               <input class="form-control" id="userInputFirst" type="text" placeholder="123" maxlength="3" minlength="3" autofocus>
-              <input class="form-control" id="userInput" type="text"  placeholder="123456" maxlength="6" minlength="6" autofocus>
+              <input class="form-control" id="userInput" type="text" value="123456" placeholder="123456" maxlength="6" minlength="6" autofocus>
               <span class="input-group-btn">
                 <select class="btn barcode-select" id="barcodeType" title="CODE128">
                   <option value="CODE128">CODE128 auto</option>
@@ -73,7 +73,7 @@
           <button class="button" name="myButton" onclick="replacePage()">Print</button>
         </div>
 
-        
+
         <!-- Bar width -->
         <div class="row">
           <div class="col-md-2 col-xs-12 col-md-offset-1 description-text"><p>Bar Width</p></div>
@@ -188,14 +188,15 @@
 
     <script>	 
       $("#barcodes").click(function() {
-      $(".code > a").each(function() {
-        var thecode = $(this).text();
-        var $bars = $('<div class="thebars"><br /><svg class="barcodes"></div></svg>').appendTo(this);
-        $bars.find('.barcodes').JsBarcode(thecode, {
-          displayValue: false,
-          height: 20
+        $(".code > a").each(function() {
+          var thecode = $(this).text();
+          console.log(thecode);
+          var $bars = $('<div class="thebars"><br /><svg class="barcodes"></div></svg>').appendTo(this);
+          $bars.find('.barcodes').JsBarcode(thecode, {
+            displayValue: false,
+            height: 20
+          });
         });
-       });
       });
       
 
