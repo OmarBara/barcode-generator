@@ -155,3 +155,15 @@ html{
 .barcode-select{
   border-color: #ccc;
 }
+
+input {
+  border: 2px solid currentcolor;
+}
+
+input:invalid {
+  border: 2px dashed red;
+}
+
+input:invalid:focus {
+  background-image: linear-gradient(rgb(199, 192, 255), rgb(216, 22, 103));
+}

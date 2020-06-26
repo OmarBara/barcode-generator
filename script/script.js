@@ -76,12 +76,37 @@ $(document).ready(function(){
     newBarcode();
 });
 
+
+$('#userInput').keyup(function(){
+  var value = $("#userInput").val(); 
+  $("#userInputFirst").val(value);
+});
+
+
+var userInput =  parseInt($("#userInput").val());
+// $("#userInputFirst").val(userInput);
+
+var storeOption = {
+  "format" : $("#barcodeType").val(),
+  "background": $("#background-color").val(),
+  "lineColor": $("#line-color").val(),
+  "fontSize": parseInt($("#bar-fontSize").val()),
+  "height": parseInt($("#bar-height").val()),
+  "width": $("#bar-width").val(),
+  "margin": parseInt($("#bar-margin").val()),
+  "textMargin": parseInt($("#bar-text-margin").val()),
+  "displayValue": $(".display-text.btn-primary").val() == "true",
+  "font": $("#font").val(),
+  "fontOptions": $(".font-option.btn-primary").map(function(){return this.value;}).get().join(" "),
+  "textAlign": $(".text-align.btn-primary").val()
+};
 var newBarcode = function() {
+  console.log(userInput);
     //Convert to boolean
     $("#barcode").JsBarcode(
         $("#userInput").val(),
         {
-          "format": $("#barcodeType").val() || "CODE128",
+          "format": $("#barcodeType").val(),
           "background": $("#background-color").val(),
           "lineColor": $("#line-color").val(),
           "fontSize": parseInt($("#bar-fontSize").val()),
@@ -113,6 +138,12 @@ var newBarcode = function() {
     $("#bar-text-margin-display").text($("#bar-text-margin").val());
 };
 
+
+function replacePage(){
+  var newElement= "<svg id='barcode'></svg>";
+  document.body.innerHTML = newElement;
+  newBarcode();
+}
 
 // function replacePage(){
 //   var newElement= "<input type='textbox' name='myTextbox'>ddd";
