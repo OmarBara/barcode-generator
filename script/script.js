@@ -177,7 +177,7 @@ function replacePage(){
 
   var content = "<table>"
     for(i = 0; i < count; i++){
-        content += '<tr><td class="code">' + "" + barCode++ + '</td></tr>';
+        content += '<tr><td class="code" id=' + barCode++ +'>' + "" + '</td></tr>';
     }
     content += "</table>"
 
@@ -185,7 +185,8 @@ function replacePage(){
 
     //code generate in table
     $(".code").each(function() {
-      var thecode = $(this).text();
+      // var thecode = $(this).text();
+      var thecode = $(this).attr("id");
       console.log(thecode, "code list");
       var $bars = $('<div class="thebars"><svg class="barcodes"></svg></div>').appendTo(this);
       $bars.find('.barcodes').JsBarcode(thecode, {
@@ -195,6 +196,9 @@ function replacePage(){
         displayValue: true
       });
     });
+
+    window.print();
+    // window.close();
 
 }
 
@@ -210,3 +214,30 @@ function readFiles()
 //   var newElement= "<input type='textbox' name='myTextbox'>ddd";
 //   document.body.innerHTML=newElement;
 //   }
+
+//create 3 X x table
+function tableCreate() {
+  var body = document.getElementsByTagName('body')[0];
+  var tbl = document.createElement('table');
+  tbl.style.width = '100%';
+  tbl.setAttribute('border', '1');
+var x =0;
+  var tbdy = document.createElement('tbody');
+  for (var i = 0; i < 3; i++) {
+    var tr = document.createElement('tr');
+    for (var j = 0; j < 3; j++) {
+      if (i == 2 && j == 1) {
+        break
+      } else {
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(x++))
+        i == 1 && j == 1 ? td.setAttribute('rowSpan', '1') : null;
+        tr.appendChild(td)
+      }
+    }
+    tbdy.appendChild(tr);
+  }
+  tbl.appendChild(tbdy);
+  body.appendChild(tbl)
+}
+tableCreate();
