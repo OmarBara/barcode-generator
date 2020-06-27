@@ -20,7 +20,20 @@
     <script type="text/javascript" src="script/jqColorPicker.min.js"></script>
     <script type="text/javascript" src="script/script.js"></script>
 <?php 
-require_once 'config/connect.php';
+    require_once 'config/connect.php';
+
+    $sql = "SELECT * FROM `sequence` where id = 1";
+
+    $result = mysqli_fetch_assoc(mysqli_query($con,$sql));
+    echo $result["id"];
+    echo $result["value"];
+    echo "+++\n";
+
+    foreach($result as $val){
+        echo $val . "-- \n";
+    }
+
+        
  ?>
 </head>
 </head>
@@ -46,7 +59,7 @@ require_once 'config/connect.php';
             <div class="input-group margin-bottom-sm">
               <span class="input-group-addon"><i class="fa fa-barcode fa-fw"></i></span>
               <input class="form-control" id="userInputFirst" type="text" value="000" placeholder="123" maxlength="3" minlength="3" autofocus>
-              <input class="form-control" id="userInput" type="text"  placeholder="123456" maxlength="9" minlength="6" autofocus>
+              <input class="form-control" id="userInput" type="text" value="<?php echo $result["value"];?>"  maxlength="9" minlength="6" autofocus>
               <span class="input-group-btn">
                 <select class="btn barcode-select" id="barcodeType" title="CODE128">
                   <option value="CODE128">CODE128 auto</option>
@@ -82,6 +95,9 @@ require_once 'config/connect.php';
             <input type="button" value="Home" class="homebutton" id="btnHome" 
                 onClick="document.location.href='index.html'" />
         </div>
+
+        
+
         <!-- Bar width -->
         <div class="row">
           <div class="col-md-2 col-xs-12 col-md-offset-1 description-text"><p>Bar Width</p></div>
