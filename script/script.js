@@ -1,5 +1,5 @@
 var defaultValues = {
-    CODE128 : "Example 1234",
+    CODE128 : "000 1234",
     CODE128A : "EXAMPLE",
     CODE128B : "Example text",
     CODE128C : "12345678",
@@ -18,6 +18,8 @@ var defaultValues = {
 };
 var count;
 var barCode;
+var barCodeFD;
+var barCodeLD;
 var storeOption = {
   "format" : "",
   "background": "",
@@ -36,7 +38,7 @@ var storeOption = {
 $(document).ready(function(){
     //read the userInputFirst and add to user input
 
-    
+    $("#userInputFirst").on('input',newBarcode);    
     $("#userInput").on('input',newBarcode);
     $("#barcodeType").change(function(){
         $("#userInput").val( defaultValues[$(this).val()] );
@@ -99,7 +101,17 @@ $(document).ready(function(){
 
 
     $('#userInput').on("input",function(){
-      barCode = $(this).val(); 
+      barCodeLD = $(this).val(); 
+      barCodeFD = $("#userInputFirst").val();
+      if(!barCodeFD){
+        $("#userInputFirst").val("000")
+      }
+      barCodeFD = $("#userInputFirst").val();
+
+      // barCode = barCodeFD +" "+ barCodeLD;
+
+      console.log(barCodeFD, "first digit");
+      console.log(barCode, "full");
       // $("#userInputFirst").val(value);      
       
       storeOption = {
@@ -129,10 +141,11 @@ $(document).ready(function(){
 
 
 var newBarcode = function() {
-  console.log(barCode);
+  console.log(barCodeLD);
     //Convert to boolean
     $("#barcode").JsBarcode(
-        $("#userInput").val(),
+      barCodeFD + barCodeLD,
+        // $("#userInput").val(),
         {
           "format": $("#barcodeType").val(),
           "background": $("#background-color").val(),
@@ -170,18 +183,19 @@ var newBarcode = function() {
 function replacePage(){
   count = $("#count").val();
   console.log(count, "count");
-
-  var newElement = "<div id='here_table'></div>";  //"<svg id='barcode'></svg>";
+//redirect to another page
+  document.location.href='new.html'
+  var newElement = "<div id='table'></div>";  //"<svg id='barcode'></svg>";
   document.body.innerHTML = newElement;
   newBarcode();
 
   var content = "<table>"
     for(i = 0; i < count; i++){
-        content += '<tr><td class="code" id=' + barCode++ +'>' + "" + '</td></tr>';
+        content += '<tr><td class="code" id=' + barCodeFD + barCodeLD++ +'>' + "" + '</td></tr>';
     }
     content += "</table>"
 
-    $('#here_table').append(content);
+    $('#table').append(content);
 
     //code generate in table
     $(".code").each(function() {
@@ -191,13 +205,13 @@ function replacePage(){
       var $bars = $('<div class="thebars"><svg class="barcodes"></svg></div>').appendTo(this);
       $bars.find('.barcodes').JsBarcode(thecode, {
         width:2,
-        height:40,
+        height:60,
         fontSize:10,
         displayValue: true
       });
     });
 
-    window.print();
+    // window.print();
     // window.close();
 
 }
@@ -240,4 +254,4 @@ var x =0;
   tbl.appendChild(tbdy);
   body.appendChild(tbl)
 }
-tableCreate();
+// tableCreate();

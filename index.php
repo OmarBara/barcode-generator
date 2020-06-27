@@ -1,26 +1,29 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html dir="rtl" lang="ar">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <title>Barcode Generator</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="Description" content="Barcode Generator real-time. Supporting multiple barcodes including CODE128, EAN, UPC, CODE39, ITF, MSI and pharmacode">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+
     <link rel="stylesheet" type='text/css' href="style/rangeslider.css">
     <link rel="stylesheet" type='text/css' href="style/style.css">
 
-    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script src="script/JsBarcode.all.min.js"></script>
-    <script src="script/rangeslider.min.js"></script>
-    <script src="script/jqColorPicker.min.js"></script>
-    <script src="script/script.js"></script>
-    <!-- make bootstrap local file ???????????????????????? -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-  </head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="script/JsBarcode.all.min.js"></script>
+    <script type="text/javascript" src="script/rangeslider.min.js"></script>
+    <script type="text/javascript" src="script/jqColorPicker.min.js"></script>
+    <script type="text/javascript" src="script/script.js"></script>
+<?php 
+require_once 'config/connect.php';
+ ?>
+</head>
+</head>
   <body>
     <div id="main">
       <div class="container">
@@ -71,12 +74,14 @@
         <div>
           <input class="form-control" id="count" type="number"  placeholder="10" maxlength="6" autofocus>
         </div>
-
+        
         <div>
           <button class="button" name="myButton" onclick="replacePage()">Print</button>
         </div>
-
-
+        <div>
+            <input type="button" value="Home" class="homebutton" id="btnHome" 
+                onClick="document.location.href='index.html'" />
+        </div>
         <!-- Bar width -->
         <div class="row">
           <div class="col-md-2 col-xs-12 col-md-offset-1 description-text"><p>Bar Width</p></div>
@@ -189,6 +194,7 @@
     <button id="barcodes">shwo barcodes</button>
     </div> -->
 
+  </body>
     <script>	 
       $("#barcodes").click(function() {
         $(".code > a").each(function() {
@@ -205,5 +211,4 @@
       
 
 		</script>
-  </body>
 </html>
