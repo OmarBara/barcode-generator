@@ -24,16 +24,7 @@
 
     $sql = "SELECT * FROM `sequence` where id = 1";
 
-    $result = mysqli_fetch_assoc(mysqli_query($con,$sql));
-    echo $result["id"];
-    echo $result["value"];
-    echo "+++\n";
-
-    foreach($result as $val){
-        echo $val . "-- \n";
-    }
-
-        
+    $result = mysqli_fetch_assoc(mysqli_query($con,$sql)); 
  ?>
 </head>
 </head>
@@ -92,9 +83,9 @@
           <button class="button" name="myButton" onclick="replacePage()">Print</button>
         </div>
         <div>
-            <input type="button" value="Home" class="homebutton" id="btnHome" 
-                onClick="document.location.href='index.html'" />
+            <input type="button" value="Home" class="homebutton" id="btnHome" onclick="get()">
         </div>
+        <!-- onClick="document.location.href='index.html'" /> -->
 
         
 

@@ -100,9 +100,21 @@ $(document).ready(function(){
     newBarcode();
 
 
+    $('#userInputFirst').on("input",function(){
+        //chek database value
+        barCodeFD = $(this).val();
+        if(barCodeFD > 0){
+        console.log("inside empty");
+        }
+        console.log("inside full");
+        loadBarcode(barCodeFD);
+
+    })
+
     $('#userInput').on("input",function(){
       barCodeLD = $(this).val(); 
       barCodeFD = $("#userInputFirst").val();
+      //remove this
       if(!barCodeFD){
         $("#userInputFirst").val("000")
       }
@@ -128,16 +140,8 @@ $(document).ready(function(){
         "fontOptions": $(".font-option.btn-primary").map(function(){return this.value;}).get().join(" "),
         "textAlign": $(".text-align.btn-primary").val()
       };
-
-
-    });
-    
+    });    
 });
-
-
-
-
-// $("#userInputFirst").val(userInput);
 
 
 var newBarcode = function() {
@@ -213,16 +217,46 @@ function replacePage(){
 
     // window.print();
     // window.close();
+    postBarcode(count)
 
 }
 
 //function to store to file
-function readFiles()
-{
-    $.get('file.txt', function(data) {
-        alert(data);
-    }, "text");
+function loadBarcode(query){
+  $.ajax({
+    url:"fetch.php",
+    method:"POST",
+    data:{query:query},
+    success:function(data){
+      $('#userInput').val(data);
+      console.log(data);
+      }
+  });
 }
+
+function postBarcode(query){
+  $.ajax({
+    url:"fetch.php",
+    method:"POST",
+    data:{query:queryAdd},
+    success:function(data){
+      console.log(data);
+      }
+  });
+}
+
+// $('#userInputFirst').keyup(function(){
+//  var search = $(this).val();
+//  if(search != '')
+//  {
+//   load_data(search);
+//  }
+//  else
+//  {
+//   load_data();
+//  }
+// });
+
 
 // function replacePage(){
 //   var newElement= "<input type='textbox' name='myTextbox'>ddd";
