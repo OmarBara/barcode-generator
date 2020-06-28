@@ -266,6 +266,12 @@ function postBarcode(query){
   });
 }
 
+function padZero(num, size) {
+  var tmp = num + "";
+  while (tmp.length < size) tmp = "0" + tmp;
+  return tmp;
+}
+
 // $('#userInputFirst').keyup(function(){
 //  var search = $(this).val();
 //  if(search != '')
