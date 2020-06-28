@@ -1,7 +1,7 @@
 var count;
 var barCode;
-var barCodeFD;
-var barCodeLD;
+var barCodeFD = "000";
+var barCodeLD = "000000";
 
 $(document).ready(function(){
 
@@ -17,11 +17,9 @@ $(document).ready(function(){
     //review if it's effictive 
     $('#userInputFirst').on("input",function(){
         //chek database value
-        barCodeFD = $(this).val();
-        if(barCodeFD > 0){
-        console.log("inside empty");
-        }
-        console.log("inside full");
+        barCodeFD = $(this).val();        
+        console.log(barCodeFD.length ,"FD size:", barCodeFD);
+
         loadBarcode(barCodeFD);
     })
 
@@ -81,7 +79,13 @@ var newBarcode = function() {
 
 function replacePage(){
     count = $("#count").val();
-    console.log(count, "count");
+    //validate form
+    if(!formValidator()){
+
+        console.log(count, "!Validator");
+        return 
+    }
+
     var newElement = "<div id='table'></div>";
     document.body.innerHTML = newElement;
     newBarcode();
@@ -95,7 +99,6 @@ function replacePage(){
 
     //code generate in table
     $(".code").each(function() {
-      // var thecode = $(this).text();
       var thecode = $(this).attr("id");
       console.log(thecode, "code list");
       var $bars = $('<div class="thebars"><svg class="barcodes"></svg></div>').appendTo(this);
@@ -109,6 +112,9 @@ function replacePage(){
   
     window.print();
     //after Print change barcode DB
+    if(window.onafterprint){
+        console.log("after print");
+    }
     window.onafterprint = function(){  
       total = padZero(barCodeLD, 6);
       var setQuery = [ barCodeFD, total ];  
@@ -116,4 +122,59 @@ function replacePage(){
       console.log(total," :",barCodeLD , "Printing completed...");
     }
       // window.close();  
+}
+
+
+// store barcode sequence changes to DB
+function setBarcode(query){
+    var jsonString = JSON.stringify(query);
+    $.ajax({
+        type: "POST",
+        url: "fetch.php",
+        data: { data : jsonString }, 
+        cache: false,
+        success: function(data){
+          // alert("OK");
+          console.log(data,":sql ok");
+        }
+    });
+}
+  
+  //fitch barcode sequence from DB
+function loadBarcode(query){
+    $.ajax({
+        url:"fetch.php",
+        method:"POST",
+        data: { query : query },
+        success: function(data){
+          $('#userInput').val(data);
+          console.log(data);
+        }
+    });
+}
+
+// add leading zero to the number
+function padZero(num, size) {
+    var tmp = num + "";
+    while (tmp.length < size) tmp = "0" + tmp;
+    return tmp;
+}
+
+//validate input 3 fields and return true || false
+function formValidator(){
+    if (barCodeFD.length < 3 || undefined){
+        $("#invalidUserInputFirst").show();
+        return false;
+    }
+    else {
+        $("#invalidUserInputFirst").hide();
+    }
+    if (count.length < 1 || undefined){
+        $("#invalidCount").show();
+        return false;
+    }
+    else {
+        $("#invalidCount").hide();
+    }
+    return true;
 }

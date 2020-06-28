@@ -231,28 +231,28 @@ function replacePage(){
 
 // store barcode sequence changes to DB
 function setBarcode(query){
-var jsonString = JSON.stringify(query);
-   $.ajax({
-        type: "POST",
-        url: "fetch.php",
-        data: {data : jsonString}, 
-        cache: false,
-        success: function(data){
-            // alert("OK");
-            console.log(data,":sql ok");
-        }
-    });
-  }
+  var jsonString = JSON.stringify(query);
+  $.ajax({
+      type: "POST",
+      url: "fetch.php",
+      data: { data : jsonString }, 
+      cache: false,
+      success: function(data){
+        // alert("OK");
+        console.log(data,":sql ok");
+      }
+  });
+}
 
 //fitch barcode sequence from DB
 function loadBarcode(query){
   $.ajax({
-    url:"fetch.php",
-    method:"POST",
-    data: {query:query},
-    success:function(data){
-      $('#userInput').val(data);
-      console.log(data);
+      url:"fetch.php",
+      method:"POST",
+      data: { query : query },
+      success: function(data){
+        $('#userInput').val(data);
+        console.log(data);
       }
   });
 }
