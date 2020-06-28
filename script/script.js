@@ -194,40 +194,42 @@ function replacePage(){
   newBarcode();
 
   var content = "<table>"
-    for(i = 0; i < count; i++){
-        content += '<tr><td class="code" id=' + barCodeFD + barCodeLD++ +'>' + "" + '</td></tr>';
-    }
-    content += "</table>"
+  for(i = 0; i < count; i++){
+      content += '<tr><td class="code" id=' + barCodeFD + barCodeLD++ +'>' + "" + '</td></tr>';
+  }
+  content += "</table>"
 
-    $('#table').append(content);
-
-    //code generate in table
-    $(".code").each(function() {
-      // var thecode = $(this).text();
-      var thecode = $(this).attr("id");
-      console.log(thecode, "code list");
-      var $bars = $('<div class="thebars"><svg class="barcodes"></svg></div>').appendTo(this);
-      $bars.find('.barcodes').JsBarcode(thecode, {
-        width:2,
-        height:60,
-        fontSize:10,
-        displayValue: true
-      });
+  $('#table').append(content);
+  //code generate in table
+  $(".code").each(function() {
+    // var thecode = $(this).text();
+    var thecode = $(this).attr("id");
+    console.log(thecode, "code list");
+    var $bars = $('<div class="thebars"><svg class="barcodes"></svg></div>').appendTo(this);
+    $bars.find('.barcodes').JsBarcode(thecode, {
+      width:2,
+      height:60,
+      fontSize:10,
+      displayValue: true
     });
+  });
 
-    window.print();
-    //after Print change barcode DB
-    window.onafterprint = function(){  
-      //count 2 string barCodeLD + count  
-      var setQuery =[ barCodeFD, barCodeLD ];  
-      setBarcode(setQuery);
+  window.print();
+  //after Print change barcode DB
+  window.onafterprint = function(){  
+    //count 2 string barCodeLD + count  TODO:
+    // var total = Number(barCodeLD) + Number(count);
+    total = padZero(barCodeLD, 6);
+    var setQuery = [ barCodeFD, total ];  
+    setBarcode(setQuery);
 
-      console.log(barCodeLD + count, "Printing completed...");
-   }
+    console.log(total," :",barCodeLD , "Printing completed...");
+  }
     // window.close();
-    postBarcode(count)
 
 }
+
+// store barcode sequence changes to DB
 function setBarcode(query){
 var jsonString = JSON.stringify(query);
    $.ajax({
@@ -242,7 +244,7 @@ var jsonString = JSON.stringify(query);
     });
   }
 
-//function to store to file
+//fitch barcode sequence from DB
 function loadBarcode(query){
   $.ajax({
     url:"fetch.php",
@@ -255,17 +257,8 @@ function loadBarcode(query){
   });
 }
 
-function postBarcode(query){
-  $.ajax({
-    url:"fetch.php",
-    method:"POST",
-    data:{query:queryAdd},
-    success:function(data){
-      console.log(data);
-      }
-  });
-}
 
+// add leading zero to the number
 function padZero(num, size) {
   var tmp = num + "";
   while (tmp.length < size) tmp = "0" + tmp;

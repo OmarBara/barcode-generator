@@ -41,7 +41,7 @@
       </div>
       <div class="barcode-container">
         <svg id="barcode"></svg>
-        <span id="invalid">Not valid data for this barcode type!</span>
+        <span id="invalid">تسلسل غير صالح للباركود</span>
       </div>
       
       <div class="container">
@@ -50,7 +50,7 @@
             <div class="input-group margin-bottom-sm">
               <span class="input-group-addon"><i class="fa fa-barcode fa-fw"></i></span>
               <input class="form-control" id="userInputFirst" type="text" value="000" placeholder="123" maxlength="3" minlength="3" autofocus>
-              <input class="form-control" id="userInput" type="text" value="<?php echo $result["value"];?>"  maxlength="9" minlength="6" autofocus>
+              <input class="form-control" id="userInput" type="text" value="<?php echo $result["value"];?>"  maxlength="6" minlength="6" autofocus>
               <span class="input-group-btn">
                 <select class="btn barcode-select" id="barcodeType" title="CODE128">
                   <option value="CODE128">CODE128 auto</option>
@@ -78,13 +78,13 @@
         <div>
           <input class="form-control" id="count" type="number"  placeholder="10" maxlength="6" autofocus>
         </div>
-        
+        <br>
         <div>
-          <button class="button" name="myButton" onclick="replacePage()">Print</button>
+          <button class="button" name="myButton" onclick="replacePage()" style="float: right;">طباعة</button>
         </div>
-        <div>
+        <!-- <div>
             <input type="button" value="Home" class="homebutton" id="btnHome" onclick="get()">
-        </div>
+        </div> -->
         <!-- onClick="document.location.href='index.html'" /> -->
 
         
