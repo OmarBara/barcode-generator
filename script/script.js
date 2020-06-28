@@ -188,7 +188,7 @@ function replacePage(){
   count = $("#count").val();
   console.log(count, "count");
 //redirect to another page
-  document.location.href='new.html'
+  // document.location.href='new.html'
   var newElement = "<div id='table'></div>";  //"<svg id='barcode'></svg>";
   document.body.innerHTML = newElement;
   newBarcode();
@@ -215,18 +215,38 @@ function replacePage(){
       });
     });
 
-    // window.print();
+    window.print();
+    //after Print change barcode DB
+    window.onafterprint = function(){    
+      var setQuery =[ barCodeFD, barCodeLD + count];  
+      setBarcode(setQuery);
+
+      console.log(barCodeLD + count, "Printing completed...");
+   }
     // window.close();
     postBarcode(count)
 
 }
+function setBarcode(query){
+var jsonString = JSON.stringify(query);
+   $.ajax({
+        type: "POST",
+        url: "fetch.php",
+        data: {data : jsonString}, 
+        cache: false,
+        success: function(data){
+            // alert("OK");
+            console.log(data,"arrived");
+        }
+    });
+  }
 
 //function to store to file
 function loadBarcode(query){
   $.ajax({
     url:"fetch.php",
     method:"POST",
-    data:{query:query},
+    data: {query:query},
     success:function(data){
       $('#userInput').val(data);
       console.log(data);
