@@ -187,7 +187,7 @@ var newBarcode = function() {
 function replacePage(){
   count = $("#count").val();
   console.log(count, "count");
-//redirect to another page
+  //redirect to another page
   // document.location.href='new.html'
   var newElement = "<div id='table'></div>";  //"<svg id='barcode'></svg>";
   document.body.innerHTML = newElement;
