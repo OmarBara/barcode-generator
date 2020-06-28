@@ -217,8 +217,9 @@ function replacePage(){
 
     window.print();
     //after Print change barcode DB
-    window.onafterprint = function(){    
-      var setQuery =[ barCodeFD, barCodeLD + count];  
+    window.onafterprint = function(){  
+      //count 2 string barCodeLD + count  
+      var setQuery =[ barCodeFD, barCodeLD ];  
       setBarcode(setQuery);
 
       console.log(barCodeLD + count, "Printing completed...");
@@ -236,7 +237,7 @@ var jsonString = JSON.stringify(query);
         cache: false,
         success: function(data){
             // alert("OK");
-            console.log(data,"arrived");
+            console.log(data,":sql ok");
         }
     });
   }

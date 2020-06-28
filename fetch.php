@@ -16,10 +16,14 @@ if(isset($_POST["query"]))
 if(isset($_POST["data"])){
 
     $data = json_decode(stripslashes($_POST['data']));
- 
-    foreach($data as $d){
-       echo $d;
-    }
+    $sql2 = "INSERT INTO `sequence` (`id`, `value`) VALUES  ($data[0], $data[1]) ON DUPLICATE KEY UPDATE    
+    value = $data[1]";
+    $result = mysqli_query($con, $sql2);
+
+    echo $result; 
+    // foreach($data as $d){
+    //    echo $d;
+    // }
 }
 
 ?>
