@@ -23,7 +23,7 @@
         <div class="row">
           <div class="col-md-10 col-md-offset-1">
             <div id="title">
-              <h1>Barcode Generator</h1>
+              <h1> اصدار رمز شريطي      Barcode Generator</h1>
             </div>
           </div>
         </div>
