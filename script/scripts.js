@@ -98,20 +98,25 @@ function replacePage(e){
     document.body.innerHTML = newElement;
     newBarcode();
     var padZeroLD;
+    var tr = '<tr>';
+    var td;
     var content = "<table>"
     for(i = 0; i < count; i++){
         padZeroLD = padZero(barCodeLD++, 6);
-        content += '<tr><td class="code" id=' + barCodeFD + padZeroLD +'>' + "" + '</td></tr>';
+        if(i % 3 === 0){            
+            content += tr ;//every 3 iteration 
+        }
+        content += '<td class="code" id=' + barCodeFD + padZeroLD +'>' + "" + '</td>';
     }
     content += "</table>"  
     $('#table').append(content);
 
     //code generate in table
     $(".code").each(function() {
-      var thecode = $(this).attr("id");
-      console.log(thecode, "code list");
-      var $bars = $('<div class="thebars"><svg class="barcodes"></svg></div>').appendTo(this);
-      $bars.find('.barcodes').JsBarcode(thecode, {
+      var barCodeId = $(this).attr("id");
+      console.log(barCodeId, "code list");
+      var $bars = $('<div class="thebars">Gasimp<svg class="barcodes"></svg></div>').appendTo(this);
+      $bars.find('.barcodes').JsBarcode(barCodeId, {
         width:2,
         height:60,
         fontSize:10,
