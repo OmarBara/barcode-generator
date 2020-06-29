@@ -1,28 +1,31 @@
 var count;
 var barCode;
-var barCodeFD = "000";
-var barCodeLD = "000000";
+var barCodeFD = "000";   //first Digit
+var barCodeLD = "000000";//last Digit
 
 $(document).ready(function(){
-
     
-    $("#userInputFirst").on('input',newBarcode);    
-    $("#userInput").on('input',newBarcode);
-    $("#barcodeType").change(function(){
-        $("#userInput").val( defaultValues[$(this).val()] );
+    // $("#userInputFirst").on('input',newBarcode);    
+    // $("#userInput").on('input',newBarcode);
+    // $("#barcodeType").change(function(){
+    //     $("#userInput").val( defaultValues[$(this).val()] );
 
-        newBarcode();
-    });
+    //     newBarcode();
+    // });
 
     //review if it's effictive 
     $('#userInputFirst').on("input",function(){
         //chek database value
         barCodeFD = $(this).val();        
-        console.log(barCodeFD.length ,"FD size:", barCodeFD);
+        console.log("barcodeFD:", barCodeFD);
 
-        loadBarcode(barCodeFD);
+        loadBarcode(barCodeFD)
+        .then();
+        // barCodeLD = $('#userInput').val();
+        console.log("barcodeLD:", barCodeLD);
+
+        newBarcode();
     })
-
 
     $('#userInput').on("input",function(){
         barCodeLD = $(this).val(); 
@@ -38,11 +41,15 @@ $(document).ready(function(){
         console.log(barCodeFD, "first digit");
         console.log(barCode, "full");
     })   
+
+    $("#count").on("input", function(){
+        newBarcode();
+    })
 })
 
 
 var newBarcode = function() {
-    console.log(barCodeLD);
+    console.log("newBarcode:",barCodeFD + barCodeLD);
     //Convert to boolean
     $("#barcode").JsBarcode(
         //make sure there is value in both of theme TODO:
@@ -77,7 +84,8 @@ var newBarcode = function() {
 
 
 
-function replacePage(){
+function replacePage(e){
+
     count = $("#count").val();
     //validate form
     if(!formValidator()){
@@ -85,14 +93,15 @@ function replacePage(){
         console.log(count, "!Validator");
         return 
     }
-
+    e.preventDefault();
     var newElement = "<div id='table'></div>";
     document.body.innerHTML = newElement;
     newBarcode();
-  
+    var padZeroLD;
     var content = "<table>"
     for(i = 0; i < count; i++){
-        content += '<tr><td class="code" id=' + barCodeFD + barCodeLD++ +'>' + "" + '</td></tr>';
+        padZeroLD = padZero(barCodeLD++, 6);
+        content += '<tr><td class="code" id=' + barCodeFD + padZeroLD +'>' + "" + '</td></tr>';
     }
     content += "</table>"  
     $('#table').append(content);
@@ -110,18 +119,20 @@ function replacePage(){
       });
     });
   
-    window.print();
+    // window.print();
     //after Print change barcode DB
     if(window.onafterprint){
         console.log("after print");
     }
     window.onafterprint = function(){  
-      total = padZero(barCodeLD, 6);
+      var total = padZero(barCodeLD, 6);
+      console.log("before send",total,"LD:",barCodeLD,"FD:",barCodeFD );
       var setQuery = [ barCodeFD, total ];  
       setBarcode(setQuery);  
       console.log(total," :",barCodeLD , "Printing completed...");
     }
       // window.close();  
+      return false;
 }
 
 
@@ -141,16 +152,28 @@ function setBarcode(query){
 }
   
   //fitch barcode sequence from DB
-function loadBarcode(query){
-    $.ajax({
+async function loadBarcode(query){
+    let result;
+    try {
+        result = await $.ajax({
         url:"fetch.php",
         method:"POST",
         data: { query : query },
         success: function(data){
-          $('#userInput').val(data);
-          console.log(data);
+            if(!data){
+                console.log("noo ajax");
+                $('#userInput').val("000000");
+                return;
+            }
+            $('#userInput').val(data);
+            barCodeLD = padZero(data, 6);
+            console.log("ajax response", data);
         }
     });
+    return result;
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 // add leading zero to the number

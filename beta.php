@@ -43,7 +43,7 @@
           </div>
           <div class="form-group col-md-6">
             <label for="input" style="float: right;">كود التسلسل</label>
-            <input type="text" class="form-control" id="userInput" placeholder="123456" style="margin-left: 500px;" maxlength="6" minlength="6" >
+            <input type="text" class="form-control" id="userInput" placeholder="123456" style="margin-left: 500px;" maxlength="6" minlength="6" readonly>
             <span id="invalidUserInput" hidden>تسلسل غير صالح للباركود</span>
 
           </div>
@@ -61,7 +61,7 @@
           </div>
           <br>
           <div>
-            <button class="btn btn-primary" name="myButton" onclick="replacePage()" style="float: right;">طباعة</button>
+            <button class="btn btn-primary" name="myButton" onclick="return replacePage(event)" style="float: right;">طباعة</button>
           </div>
                 
         </form>
