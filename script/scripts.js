@@ -52,6 +52,7 @@ $(document).ready(function(){
             $(this).prop("checked", returnVal);
             $('#userInput').prop('readonly', false);
         }
+        else  $('#userInput').prop('readonly', true);            
         // $('#textbox1').val(this.checked);
     })
 })
