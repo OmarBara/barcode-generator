@@ -45,7 +45,11 @@
             <label for="input" style="float: right;">كود التسلسل</label>
             <input type="text" class="form-control" id="userInput" placeholder="123456" style="margin-left: 500px;" maxlength="6" minlength="6" readonly>
             <span id="invalidUserInput" hidden>تسلسل غير صالح للباركود</span>
-
+          </div>
+          <br>
+          <div class="form-group col-md-6" >
+            <input class="form-check-input" type="checkbox" id="CheckBox">
+            <label class="form-check-label" for="CheckBox">ادخال تسلسل يدوي</label>
           </div>
           <div class="form-group col-md-12">            
           <span class="input-group-addon"><i class="fa fa-barcode fa-fw"></i></span>

@@ -45,6 +45,15 @@ $(document).ready(function(){
     $("#count").on("input", function(){
         newBarcode();
     })
+
+    $("#CheckBox").change(function() {
+        if(this.checked) {
+            var returnVal = confirm(" الادخال اليدوي قد يسبب في ازدواجية الارقام المصدرة ، هل انت متأكد؟");
+            $(this).prop("checked", returnVal);
+            $('#userInput').prop('readonly', false);
+        }
+        // $('#textbox1').val(this.checked);
+    })
 })
 
 

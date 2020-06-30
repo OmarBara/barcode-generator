@@ -8,13 +8,13 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `sts`
+-- Database: `barcode`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acls`
+-- Table structure for table `sequence`
 --
 
 CREATE TABLE IF NOT EXISTS `sequence` (

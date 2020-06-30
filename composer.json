@@ -1,0 +1,14 @@
+{
+    "name": "omarbara/barcode",
+    "description": "barcode generator",
+    "authors": [
+        {
+            "name": "OmarBara",
+            "email": "omarbara00@yahoo.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "ext-mysqli": "*"
+      }
+}
