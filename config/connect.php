@@ -22,7 +22,9 @@ $config = array(
 /* End config */
 
 global $con;
-$con = mysqli_connect($config["host"] , $config["user"] ,$config["pw"] , $config["db"] ) or die('Unable to establish a DB connection');
+$con = mysqli_connect($db_host , $db_user ,$db_pass , $db_database) or die('Unable to establish a DB connection');
+// $con = mysqli_connect($config["host"] , $config["user"] ,$config["pw"] , $config["db"] ) or die('Unable to establish a DB connection');
+
 mysqli_select_db($con,$db_database);
 
 ?>
