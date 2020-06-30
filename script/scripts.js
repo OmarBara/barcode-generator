@@ -137,7 +137,7 @@ function replacePage(e){
       });
     });
   
-    window.print();
+    // window.print();
     //after Print change barcode DB
     
     window.onafterprint = function(){  
