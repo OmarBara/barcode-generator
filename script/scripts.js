@@ -13,7 +13,7 @@ $(document).ready(function(){
     //     newBarcode();
     // });
 
-    //review if it's effictive 
+    //review if it's effective 
     $('#userInputFirst').on("input",function(){
         //chek database value
         barCodeFD = $(this).val();        
@@ -111,12 +111,15 @@ function replacePage(e){
     var tr = '<tr>';
     var td;
     var content = "<table>"
-    for(i = 0; i < count; i++){
-        padZeroLD = padZero(barCodeLD++, 6);
-        if(i % 3 === 0){            
-            content += tr ;//every 3 iteration 
+    for (let j = 0; j < count; j++) {
+        barCodeLD++;
+        for(i = 0; i < 33; i++){
+            padZeroLD = padZero(barCodeLD, 6);
+            if(i % 3 === 0){            
+                content += tr ;//every 3 iteration 
+            }
+            content += '<td class="code" id=' + barCodeFD + padZeroLD +'>' + "" + '</td>';
         }
-        content += '<td class="code" id=' + barCodeFD + padZeroLD +'>' + "" + '</td>';
     }
     content += "</table>"  
     $('#table').append(content);
@@ -128,17 +131,15 @@ function replacePage(e){
       var $bars = $('<div class="thebars">Gasimp<svg class="barcodes"></svg></div>').appendTo(this);
       $bars.find('.barcodes').JsBarcode(barCodeId, {
         width:2,
-        height:60,
+        height:40,
         fontSize:10,
         displayValue: true
       });
     });
   
-    // window.print();
+    window.print();
     //after Print change barcode DB
-    if(window.onafterprint){
-        console.log("after print");
-    }
+    
     window.onafterprint = function(){  
       var total = padZero(barCodeLD, 6);
       console.log("before send",total,"LD:",barCodeLD,"FD:",barCodeFD );
