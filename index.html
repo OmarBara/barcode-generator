@@ -194,7 +194,7 @@
         $(".code > a").each(function() {
           var thecode = $(this).text();
           console.log(thecode);
-          var $bars = $('<div class="thebars"><br /><svg class="barcodes"></div></svg>').appendTo(this);
+          var $bars = $('<div class="svgCell"><br /><svg class="barcodes"></div></svg>').appendTo(this);
           $bars.find('.barcodes').JsBarcode(thecode, {
             displayValue: false,
             height: 20

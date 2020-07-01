@@ -25,6 +25,13 @@ html{
     padding-top: 10px;
     display: inline-block;
 }
+h4{
+  color: #D9A91A;
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+  font-family: 'Tajawal', sans-serif;
+}
 
 .container{
   width: 750px;
@@ -110,7 +117,7 @@ table {
   height:35px;
 }
 
-svgCell{
+.svgCell{
   text-align: left;
   float: left;
 }
@@ -174,9 +181,9 @@ input {
 }
 
 input:invalid {
-  border: 1px dashed red;
+  border: 1px dashed goldenrod;
 }
 
 input:invalid:focus {
-  background-image: linear-gradient(rgb(199, 192, 255), rgb(155, 61, 100));
+  background-image: linear-gradient(rgb(255, 243, 192), rgb(233, 182, 15));
 }
