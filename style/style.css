@@ -4,6 +4,8 @@ body{
     margin: 0;
     padding: 0;
     width:100%;
+    font-size: medium;
+    font-weight: bolder;
 }
 
 html{
@@ -25,12 +27,13 @@ html{
     padding-top: 10px;
     display: inline-block;
 }
-h4{
+h3{
   color: #D9A91A;
   text-align: center;
   font-weight: bold;
-  font-size: large;
+  font-size: x-large;
   font-family: 'Tajawal', sans-serif;
+  margin-top: 15px;
 }
 
 .container{
@@ -43,9 +46,19 @@ h4{
   text-align: right;
 }
 
-table {
+table{
   border-collapse: collapse;
   border-spacing: 0 0px;
+}
+.in{
+  padding-left: 90px;
+  margin-left: 330px;
+}
+.tslsl{
+  margin-left: 180px;
+}
+.invalid{
+  color: red;
 }
 
 @media (max-width: 800px) {
@@ -81,6 +94,7 @@ table {
     display:inline-block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 70px;
     text-align: left;
     line-height: 90%;
 }
@@ -113,6 +127,9 @@ table {
     vertical-align: middle;
 }
 
+#invalidCount{
+  color: #DE0000;
+}
 #barcodeType{
   height:35px;
 }
@@ -123,7 +140,7 @@ table {
 }
 
 .barcode-container{
-  height:200px;
+  height:150px;
   line-height: 200px;
   text-align: center;
   vertical-align: middle;

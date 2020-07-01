@@ -22,16 +22,16 @@
     <div id="main">
       <div class="container">
         <div class="row">
-          <div class="col-md-7 col-md-offset-1">
-            <div id="title">
-              <h4> الهئية العامة للبحث و التعرف على المفقودين </h4>
-              <h4>منظومة إصدار الرقم المشفر للجثامين مجهولة الهوية</h4>
+        </div>
+          <div class="col-md-3 col-md">
+              <img src="icon2.jpeg" alt="icon" width="180" height="180">
+          </div>
 
-            </div>
-          </div>
-          <div class="col-md-3 col-md-offset-1">
-              <img src="icon2.jpeg" alt="icon" width="120" height="120">
-          </div>
+          <div class="col-7 col-md-offset-1">
+            <div id="title">
+              <h3> الهيئة العامة للبحث و التعرف على المفقودين </h3>
+              <h3>منظومة إصدار الرقم المشفر للجثامين مجهولة الهوية</h3>
+            </div>          
         </div>
       </div>
       <div class="barcode-container">
@@ -45,15 +45,15 @@
           <div class="form-group col-md-3">
             <label for="input" style="float: right;">كود المنطقة</label>
             <input  type="text" class="form-control" id="userInputFirst" placeholder="123" maxlength="3" minlength="3" autofocus required>
-            <span id="invalidUserInputFirst" hidden> كود غير صحصح</span>
+            <span class="invalid" id="invalidUserInputFirst" hidden> كود غير صحصح</span>
           </div>
-          <div class="form-group col-md-6">
-            <label for="input" style="float: right;">كود التسلسل</label>
-            <input type="text" class="form-control" id="userInput" placeholder="123456" style="margin-left: 500px;" maxlength="6" minlength="6" readonly>
-            <span id="invalidUserInput" hidden>تسلسل غير صالح للباركود</span>
+          <div class="form-group col-md-6 tslsl" >
+            <label for="input" style="margin-left: 200px;"> كود التسلسل</label>
+            <input type="text" class="form-control" id="userInput" placeholder="123456"  maxlength="6" minlength="6" readonly>
+            <span class="invalid" id="invalidUserInput" hidden>تسلسل غير صالح للباركود</span>
           </div>
           <br>
-          <div class="form-group col-md-6" >
+          <div class="form-group col-md-6 in" >
             <input class="form-check-input" type="checkbox" id="CheckBox">
             <label class="form-check-label" for="CheckBox">ادخال تسلسل يدوي</label>
           </div>
