@@ -9,7 +9,7 @@ if(isset($_POST["query"]))
     $sql = "SELECT * FROM `sequence` where id = '".$_POST["query"]."'";
     $result = mysqli_fetch_assoc(mysqli_query($con,$sql)); 
     //add 1 and convert to string 6 digits
-    echo $result["value"];
+    echo $result["value"] + 1;
     // echo $_POST["query"].":query";
 }
 
