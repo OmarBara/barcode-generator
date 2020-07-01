@@ -109,7 +109,7 @@ function replacePage(e){
     newBarcode();
     var padZeroLD;
     var tr = '<tr>';
-    var td;
+    barCodeLD--;
     var content = "<table>"
     for (let j = 0; j < count; j++) {
         barCodeLD++;
@@ -128,7 +128,7 @@ function replacePage(e){
     $(".code").each(function() {
       var barCodeId = $(this).attr("id");
       console.log(barCodeId, "code list");
-      var $bars = $('<div class="thebars">Gasimp<svg class="barcodes"></svg></div>').appendTo(this);
+      var $bars = $('<div class="svgCell">Gasimp<svg class="barcodes"></svg></div>').appendTo(this);
       $bars.find('.barcodes').JsBarcode(barCodeId, {
         width:2,
         height:40,
