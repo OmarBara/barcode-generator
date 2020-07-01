@@ -1,6 +1,6 @@
 body{
     background:#ddd;
-    text-align: right;
+    text-align: center;
     margin: 0;
     padding: 0;
     width:100%;
@@ -28,12 +28,12 @@ html{
 
 .container{
   width: 750px;
-  text-align: left;
+  text-align: right;
 }
 
 .code{
   font-size: smaller;
-  text-align: left;
+  text-align: right;
 }
 
 table {
@@ -55,9 +55,7 @@ table {
     min-width:0px;
   }
 
-  .container{
-    width: 100%;
-  }
+ 
 
   .github-banner{
     display: none;
@@ -110,6 +108,11 @@ table {
 
 #barcodeType{
   height:35px;
+}
+
+svgCell{
+  text-align: left;
+  float: left;
 }
 
 .barcode-container{
@@ -171,9 +174,9 @@ input {
 }
 
 input:invalid {
-  border: 2px dashed red;
+  border: 1px dashed red;
 }
 
 input:invalid:focus {
-  background-image: linear-gradient(rgb(199, 192, 255), rgb(216, 22, 103));
+  background-image: linear-gradient(rgb(199, 192, 255), rgb(155, 61, 100));
 }
