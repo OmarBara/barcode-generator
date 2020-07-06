@@ -5,12 +5,11 @@ require_once 'config/connect.php';
 $output = '';
 if(isset($_POST["query"]))
 {
-    //  $search = mysqli_real_escape_string($connect, $_POST["query"]);
     $sql = "SELECT * FROM `sequence` where id = '".$_POST["query"]."'";
     $result = mysqli_fetch_assoc(mysqli_query($con,$sql)); 
     //add 1 and convert to string 6 digits
-    echo $result["value"] + 1;
-    // echo $_POST["query"].":query";
+	$value = isset($result['value']) ? $result['value'] : 0;
+    echo $value + 1;
 }
 
 if(isset($_POST["data"])){
@@ -21,9 +20,6 @@ if(isset($_POST["data"])){
     $result = mysqli_query($con, $sql2);
 
     echo $result; 
-    // foreach($data as $d){
-    //    echo $d;
-    // }
 }
 
 ?>

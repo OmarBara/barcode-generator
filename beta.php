@@ -71,7 +71,7 @@
           </div>
           <br>
           <div>
-            <button class="btn btn-primary" name="myButton" onclick="return replacePage(event)" style="float: right;">طباعة</button>
+            <button class="btn btn-primary" name="myButton" onclick="return replacePage(event)" style="float: right;">معاينة قبل الطباعة</button>
           </div>
                 
         </form>

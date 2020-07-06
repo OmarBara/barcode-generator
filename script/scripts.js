@@ -21,7 +21,6 @@ $(document).ready(function(){
 
         loadBarcode(barCodeFD)
         .then();
-        // barCodeLD = $('#userInput').val();
         console.log("barcodeLD:", barCodeLD);
 
         newBarcode();
@@ -30,13 +29,11 @@ $(document).ready(function(){
     $('#userInput').on("input",function(){
         barCodeLD = $(this).val(); 
         barCodeFD = $("#userInputFirst").val();
-        //remove this
+        //check if need to remove this?
         if(!barCodeFD){
           $("#userInputFirst").val("000")
         }
         barCodeFD = $("#userInputFirst").val();
-  
-        // barCode = barCodeFD +" "+ barCodeLD;
   
         console.log(barCodeFD, "first digit");
         console.log(barCode, "full");
@@ -53,7 +50,6 @@ $(document).ready(function(){
             $('#userInput').prop('readonly', false);
         }
         else  $('#userInput').prop('readonly', true);            
-        // $('#textbox1').val(this.checked);
     })
 })
 
@@ -99,11 +95,11 @@ function replacePage(e){
     count = $("#count").val();
     //validate form
     if(!formValidator()){
-
         console.log(count, "!Validator");
         return 
     }
     e.preventDefault();
+    // window.open();
     var newElement = "<div id='table'></div>";
     document.body.innerHTML = newElement;
     newBarcode();
@@ -115,8 +111,9 @@ function replacePage(e){
         barCodeLD++;
         for(i = 0; i < 33; i++){
             padZeroLD = padZero(barCodeLD, 6);
-            if(i % 3 === 0){            
-                content += tr ;//every 3 iteration 
+            if(i % 3 === 0){ 
+                //every 3 iteration            
+                content += tr; 
             }
             content += '<td class="code" id=' + barCodeFD + padZeroLD +'>' + "" + '</td>';
         }
@@ -131,14 +128,16 @@ function replacePage(e){
       var $bars = $('<div class="svgCell">Gasimp<svg class="barcodes"></svg></div>').appendTo(this);
       $bars.find('.barcodes').JsBarcode(barCodeId, {
         width:2,
-        height:40,
+        height:35,
         fontSize:10,
         displayValue: true
       });
     });
   
     // window.print();
+    // window.open();
     //after Print change barcode DB
+
     
     window.onafterprint = function(){  
       var total = padZero(barCodeLD, 6);
@@ -172,21 +171,21 @@ async function loadBarcode(query){
     let result;
     try {
         result = await $.ajax({
-        url:"fetch.php",
-        method:"POST",
-        data: { query : query },
-        success: function(data){
-            if(!data){
-                console.log("noo ajax");
-                $('#userInput').val("000000");
-                return;
+            url:"fetch.php",
+            method:"POST",
+            data: { query : query },
+            success: function(data){
+                if(!data){
+                    console.log("noo ajax");
+                    $('#userInput').val("000000");
+                    return;
+                }
+                $('#userInput').val(data);
+                barCodeLD = padZero(data, 6);
+                console.log("ajax response", data);
             }
-            $('#userInput').val(data);
-            barCodeLD = padZero(data, 6);
-            console.log("ajax response", data);
-        }
-    });
-    return result;
+        })
+        return result;
     } catch (error) {
         console.error(error);
     }
