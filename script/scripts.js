@@ -128,8 +128,9 @@ function replacePage(e){
       var $bars = $('<div class="svgCell">Gasimp<svg class="barcodes"></svg></div>').appendTo(this);
       $bars.find('.barcodes').JsBarcode(barCodeId, {
         width:2,
-        height:35,
-        fontSize:10,
+        height:30,
+        fontSize:15,
+        font:"Arial Black",
         displayValue: true
       });
     });
