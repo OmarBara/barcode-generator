@@ -49,6 +49,7 @@ h3{
 table{
   border-collapse: collapse;
   border-spacing: 0 0px;
+  padding-left: 30px;
 }
 .in{
   padding-left: 90px;
@@ -67,7 +68,7 @@ table{
     margin-bottom:0;
     margin-left:0;
     margin-right:0;
-    padding-left: 10px;
+    padding-left: 20px;
     padding-right: 10px;
     -moz-border-radius: 0px;
     border-radius: 0px;
