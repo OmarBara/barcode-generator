@@ -97,7 +97,7 @@ table{
   @page {
     /* Set a margin on all other pages. */
     size: A4; /* DIN A4 standard, Europe */
-    margin: 6mm 5mm 6mm 5mm;
+    margin: 6mm 4mm 6mm 7mm;
   }
 
   body {
