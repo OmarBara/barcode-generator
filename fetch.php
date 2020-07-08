@@ -2,13 +2,13 @@
 //fetch.php
 require_once 'config/connect.php';
 
-$output = '';
-if(isset($_POST["query"]))
-{
+if(isset($_POST["query"])){
+
     $sql = "SELECT * FROM `sequence` where id = '".$_POST["query"]."'";
     $result = mysqli_fetch_assoc(mysqli_query($con,$sql)); 
     //add 1 and convert to string 6 digits
-	$value = isset($result['value']) ? $result['value'] : 0;
+    $value = isset($result['value']) ? $result['value'] : 0;
+    
     echo $value + 1;
 }
 

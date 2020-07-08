@@ -125,7 +125,7 @@ function replacePage(e){
     $(".code").each(function() {
       var barCodeId = $(this).attr("id");
       console.log(barCodeId, "code list");
-      var $bars = $('<div class="svgCell">Gasimp<svg class="barcodes"></svg></div>').appendTo(this);
+      var $bars = $('<div class="svgCell">GASIMP<svg class="barcodes"></svg></div>').appendTo(this);
       $bars.find('.barcodes').JsBarcode(barCodeId, {
         width:2,
         height:30,
