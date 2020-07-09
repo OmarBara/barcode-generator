@@ -44,6 +44,7 @@ h3{
 .code{
   font-size: smaller;
   text-align: right;
+  color: #ffffff00;
 }
 
 table{
@@ -51,8 +52,6 @@ table{
   border-spacing: 0 0px;
   padding-left: 30px;
 }
-
-
 
 .in{
   padding-left: 90px;
@@ -103,10 +102,12 @@ table{
   body {
     width: 210mm;
     height: 297mm;
-    border: 1px solid white;
+    border: 1px solid #ffffff00;
     margin:0mm ;
   }
-
+  td {
+    color: #ffffff00 !important;
+  }
 
 }
 
